@@ -1,0 +1,96 @@
+<div id="northsidebar" class="sidebar">
+
+    <div id="recent-posts-2" class="widget widget_recent_entries">
+    <h3>最新文章</h3>
+
+    <ul>
+        {% for a in newpost %}
+        <li>
+        <a title="{{a.post_title}}" href="/article/{{a.id}}">{{a.post_title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+
+    <div id="views-4" class="widget widget_views">
+    <h3>全站热门</h3>
+    
+
+
+    <ul>
+        {% for a in hotarticles %}
+        <li>
+        <a title="{{a.post_title}}" href="/article/{{a.id}}">{{a.post_title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    </div>
+
+<div id="tag_cloud-2" class="widget widget_tag_cloud">
+<h3>标签</h3>
+<div class="tagcloud">
+    {% set row_class = cycler('font-size:12.656565656pt;', 'font-size:8pt;', 'font-size:21.0567465745647pt;', 'font-size:9.0567465745647pt;','font-size:7.0567465745647pt;','font-size:14.0567465745647pt;', 'font-size:17.0567465745647pt;', 'font-size:10.0567465745647pt;','font-size:18.0567465745647pt;', 'font-size:9.0567465745647pt;', 'font-size:16.0567465745647pt;', 'font-size:19.0567465745647pt;', 'font-size:7.0567465745647pt;', 'font-size:10.0567465745647pt;','font-size:15.0567465745647pt;', 'font-size:8.0567465745647pt;', 'font-size:20.0567465745647pt;', 'font-size:17.0567465745647pt;', 'font-size:14.0567465745647pt;', 'font-size:15.0567465745647pt;') %}
+    {% set color_class = cycler('color:#ac1dfe;','color:#bcb46e;','color:#4298e7;','color:#a7bce8','color:#e6eca8;','color:#d4349a;','color:#5b48ce;','color:#b5b1ea;',
+    'color:#fe4516;','color:#a68d32;','color:#68d6e5;','color:#5c8d29;','color:#9c7da1;','color:#243f2a;','color:#6c7d99;','color:#9cade9;',
+    'color:#1ced29;','color:#ec3de9;','color:#367d29;','color:#cccd29;') %}
+
+
+    {% for tag in tags %}
+    <a class="tag-link-17" style={{color_class.next()}}{{row_class.next()}} href="/tag/{{tag.id}}">{{tag.name}}</a>
+    {% endfor %}
+</div>
+</div>
+
+
+
+</div>
+
+<div id="centersidebar" class="sidebar">
+
+
+        <div id="categories-367921423" class="widget widget_categories">
+     <h3>分类目录</h3>
+     <ul>
+        {% for c in categorys %}
+        <li class="cat-item cat-item-189">
+        <a title="查看 {{c.category_name}} 下的所有文章" href="/category/{{c.id}}">{{c.category_name}}</a>
+        ({{c.posts.count()}})
+        </li>
+        {% endfor %}
+     </ul>   
+    </div>
+    </div>
+
+<div id="southsidebar" class="sidebar">
+    <div id="get-recent-comments" class="widget widget_get_recent_comments">
+    <h3>最新评论</h3>
+    <div id="get_recent_comments_wrap">
+        <ul>
+            {% for comment in comments %}
+            <li>
+                <a title="{{comment.post_id}}" href="/article/{{comment.post_id}}#comments">{{comment.author}}</a>
+                : {{(comment.content|safe)[:30]}} ...
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    </div>
+    <div id="google">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-3421553373953599";
+        /* 首页侧边下方 */
+        google_ad_slot = "4863599936";
+        google_ad_width = 200;
+        google_ad_height = 200;
+//-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
+    </div>
+
+	
+
