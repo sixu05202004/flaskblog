@@ -1,56 +1,29 @@
-      
-        <ul id="menus1">
-            <li {% if nav_current=="index" %}id="current"{% endif %}><a class="home" href="/">首页</a><span></span></li>
-            <li {% if nav_current=="python" %}id="current"{% endif %}><a href="/category/1">Python</a><span></span></li>
-            <li {% if nav_current=="programming pearls" %}id="current"{% endif %}><a href="/category/2">编程珠玑</a><span></span></li>
-            <li {% if nav_current=="db cookbook" %}id="current"{% endif %}><a href="/category/3">数据库</a><span></span></li>           
-            <li {% if nav_current=="linux/unix cookbook" %}id="current"{% endif %}><a href="/category/4">操作系统</a><span></span></li>
-            <li {% if nav_current=="other" %}id="current"{% endif %}><a href="/category/5">杂项</a><span></span></li>
-            <li {% if nav_current=="about" %}id="current"{% endif %}><a href="/about">关于</a><span></span></li>
-            <li><a class="lastmenu" href="javascript:void(0);"></a></li>
-        </ul>
+<div class="menu">
+<div id="menu-icon">Menu</div>
 
-  <div id="searchbox">
-   <form method="get" action="/search">
-    <div class="content">
-<input class="textfield" type="text" value="" size="24" name="s">
-<input class="button" type="submit" value="">
+
+      
+        <ul>
+            <li class="current_page_item" {% if nav_current=="index" %}id="current"{% endif %}><a class="home" href="/">首页</a></li>
+            <li class="page_item page-item-2" {% if nav_current=="python" %}id="current"{% endif %}><a href="/category/1">Python</a></li>
+            <li class="page_item page-item-2" {% if nav_current=="programming pearls" %}id="current"{% endif %}><a href="/category/2">编程珠玑</a></li>
+            <li class="page_item page-item-2" {% if nav_current=="db cookbook" %}id="current"{% endif %}><a href="/category/3">数据库</a></li>           
+            <li class="page_item page-item-2" {% if nav_current=="linux/unix cookbook" %}id="current"{% endif %}><a href="/category/4">操作系统</a></li>
+            <li class="page_item page-item-2" {% if nav_current=="other" %}id="current"{% endif %}><a href="/category/5">杂项</a></li>
+            <li class="page_item page-item-2" {% if nav_current=="about" %}id="current"{% endif %}><a href="/about">关于</a></li>
+        
+        </ul>
 </div>
 
-   </form>
-   </div>
-   <script type="text/javascript">
-   
-//<![CDATA[
-var searchbox = MGJS.$("searchbox");
-var searchtxt = MGJS.getElementsByClassName("textfield", "input", searchbox)[0];
-var searchbtn = MGJS.getElementsByClassName("button", "input", searchbox)[0];
-var tiptext = "请输入关键字...";
-if(searchtxt.value == "" || searchtxt.value == tiptext) {
-searchtxt.className += " searchtip";
-searchtxt.value = tiptext;
-}
-searchtxt.onfocus = function(e) {
-if(searchtxt.value == tiptext) {
-searchtxt.value = "";
-searchtxt.className = searchtxt.className.replace(" searchtip", "");
-}
-}
-searchtxt.onblur = function(e) {
-if(searchtxt.value == "") {
-searchtxt.className += " searchtip";
-searchtxt.value = tiptext;
-}
-}
-searchbtn.onclick = function(e) {
-if(searchtxt.value == "" || searchtxt.value == tiptext) {
-return false;
-}
-}
-//]]>
-</script>
+   <form id="searchform" action="/search" method="get">
+<div>
+<label class="screen-reader-text" for="s">搜索：</label>
+<input id="s" type="text" name="s" value="">
+<input id="searchsubmit" type="submit" value="搜索">
+</div>
+</form>     
 
-    </script> 
+
       
 
   <!--

@@ -1,0 +1,126 @@
+/*
+
+Adding support for language written in a Right To Left (RTL) direction is easy -
+it's just a matter of overwriting all the horizontal positioning attributes
+of your CSS stylesheet in a separate stylesheet file named rtl.css.
+
+http://codex.wordpress.org/Right_to_Left_Language_Support
+
+*/
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+#content nav .nav-previous {
+	float: right;
+}
+
+#content nav .nav-next {
+	float: left;
+	text-align: left;
+}
+
+#site-title {
+	margin-right: 0;
+	margin-left: 315px;
+}
+
+#site-description {
+	margin-right: 0;
+	margin-left: 300px;
+}
+
+header[role=banner] #searchform {
+	right: auto;
+	left: 0;
+}
+
+header[role=banner] #s {
+	background: url(library/images/icon-search.png) no-repeat 98% 50% #fff;
+	padding: 7px 30px 7px 10px;
+}
+
+
+/******************************************************************
+NAVIGATION STYLES
+******************************************************************/
+
+div.menu {}
+	div.menu ul { }
+		div.menu ul li { 
+			list-style-type: none; 
+			float: right; 
+		}
+			div.menu ul li a { 
+				display: block; 
+				text-decoration: none; 
+			}
+				div.menu ul li:last-child a {}
+				div.menu ul li a:hover {}
+		div.menu ul li.current-menu-item a, 
+		div.menu ul li.current_page_item a {}
+		div.menu ul li ul.sub-menu, 
+		div.menu ul li ul.children { 
+			position: absolute; 
+			right: -9999em; 
+			z-index: 9999; 
+			width: 200px; 
+			word-wrap: break-word; 
+		}
+			div.menu ul li ul li a {}
+				div.menu ul li ul li a:hover {}
+			div.menu ul li ul li:last-child a {}
+			div.menu ul li:hover ul { 
+				right: auto; 
+			}
+				div.menu ul li ul li ul.sub-menu, 
+				div.menu ul li ul li ul.children { 
+					right: -9999em; 
+					position: absolute; 
+					margin-right: 200px; 
+					top: auto; 
+					margin-top: -30px; 
+				}
+					div.menu ul li ul li:hover ul.sub-menu, 
+					div.menu ul li ul li:hover ul.children { 
+						right: auto; 
+					}
+					
+		.widget_nav_menu ul li { 
+			float:none 
+		}
+
+		.widget_nav_menu ul li ul.sub-menu, 
+		.widget_nav_menu ul li ul.children { 
+			position: relative;
+			right: auto;
+			z-index: 9999; 
+			width: auto;
+			word-wrap: break-word; 
+			margin-right: 1em;
+			margin-top: 0.5em;
+		}
+			.widget_nav_menu ul li ul.sub-menu a, 
+			.widget_nav_menu ul li ul.children a {}
+			
+			.widget_nav_menu ul li ul li ul.sub-menu, 
+			.widget_nav_menu ul li ul li ul.children { 
+				right: auto; 
+				position: relative; 
+				margin-right:1em;
+				margin-top: 0.5em;
+				top: auto; 
+				word-wrap: break-word; 
+			}
+		
+		
+/** WIDGET **/
+
+#sidebar .widget li, 
+#meta.widget aside a {
+	background: url(library/images/bullet.png) no-repeat right 7px;
+	padding-left: 0;
+	padding-right: 17px;
+}

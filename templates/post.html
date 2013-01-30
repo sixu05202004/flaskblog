@@ -2,8 +2,8 @@
 <!--[if IE 7 ]>    <html class="ie7 oldie"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8 oldie"> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
-
+<!--[if (gt IE 9)|!(IE)]><!--><!--<![endif]-->
+<html class=" js no-flexbox canvas canvastext postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache" lang="zh-CN">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
@@ -19,20 +19,18 @@
 	<title> 派森吧 - pythonpub.com | 享受python带来的便利以及快乐 </title>
 
 
-	<link type="text/css" rel="stylesheet" href="/static/css/SyntaxHighlighter/shCoreEclipse.css"><link>
+	<link type="text/css" rel="stylesheet" href="/static/css/SyntaxHighlighter/shCoreDefault.css"><link>
 
-	<link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css"><link>
-	<link rel="stylesheet" type="text/css" media="screen" href="/static/css/coolblue.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/static/css/chine.css" />
-    <script src="http://coolshell.cn//wp-content/themes/inove/js/base.js" type="text/javascript"> </script>
+	<link id="diginews_style-css" media="all" type="text/css" href="/static/css/style.css" rel="stylesheet">
+	<script src="/static/js/modernizr-2.6.1.min.js?ver=2.6.1" type="text/javascript"></script>
 	<script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.2.min.js"><\/script>')</script>
+	<script src="/static/js/scripts.js?ver=1.0.0" type="text/javascript"></script>
+	<script src="/static/js/base.js" type="text/javascript"> </script>
+	
 	<script src="/static/js/scrollToTop.js"></script>
 	<script src="/static/js/inputFocusOrBlur.js"></script>
 	<script src="/static/js/jquery.form.js"></script> 
-	<script src="/static/js/bootstrap-transition.js"></script> 
-	<script src="/static/js/bootstrap-tooltip.js"></script>
-	<script src="/static/js/bootstrap-modal.js"></script> 
-	<script src="/static/js/subscribe.js"></script> 
+
 
 	<!--[if lt IE 9]>
 	    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -45,208 +43,221 @@
 	<script language="JavaScript" src="/static/js/keyboardControl.js"></script>
 
 
+   <style type="text/css">
+.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}
+</style>
+<style id="custom-background-css" type="text/css">
+body.custom-background { background-image: url('/static/images/bg.jpg'); background-repeat: repeat; background-position: top left; background-attachment: scroll; }
+</style>
 
 </head>
 
-<body>
-<div id="wrap">
+<body class="single single-post postid-58 single-format-standard custom-background single-author">
 <div id="container">
-<div id="header1">
-	
-	<div id="caption">
-<h1 id="title">
-	<a href="/">派森吧-pythonpub.com</a>
+	<header id="branding" role="banner">
+		<div id="inner-header" class="clearfix">
+			
+<hgroup id="site-heading">
+<h1 id="site-title">
+<a rel="home" title="派森吧-pythonpub.com" href="/">python pub</a>
 </h1>
-<div id="tagline">享受python编程所带来的快乐以及便利-www.pythonpub.com </div>
-</div>
-<div class="fixed"></div>
+<h2 id="site-description">享受python带来的便利以及快乐 </h2>
+</hgroup>
+
+
+<nav id="access" role="navigation">
+<h1 class="assistive-text section-heading">Main menu</h1>
+<div class="skip-link screen-reader-text">
+<a title="Skip to content" href="#content">Skip to content</a>
 </div>
 
-<div id="navigation">
 {% include '/head.html' %}
-
-<div class="fixed"></div>
+</nav>
 </div>
+</header>
 
-
-
-
-
-	<!-- content-wrap -->
-	<div id="content1">
-
-			<!-- main -->
-	<div id="main1">
-
-	<div id="postpath">
-	<a href="/" title="转到首页">首页</a>
-	>
-	<a rel="category tag" title="查看 {{post.categorys.category_name}} 中的全部文章" href="/category/{{post.categorys.id}}">{{post.categorys.category_name}}</a>
-	> {{post.post_title}}
-	</div>
-
+<div id="content" class="clearfix">
+	<div id="main" class="col620 clearfix" role="main">
 	
-	<div class="post1">
-		<h2><a class="title" rel="bookmark">{{post.post_title}}</a></h2>
+		<article id="post-58" class="post-58 post type-post status-publish format-standard hentry category-1">
+			<header class="entry-header">
+				<div class="entry-meta single-date">
+					<a rel="bookmark" title="8:01 上午" href="/article/{{post.id}}">
+					<time class="entry-date" pubdate="" datetime="2012-04-17T08:01:23+00:00">
+					
+					{{ post.post_create_time|safe }}
+					</time>
+					</a>
+					</div>
 
-	    <div class="info">
-	    	<span class="date">{{ post.post_create_time|safe }}</span>
-	    	<span class="author">dan</span>
+				
+				<h1 class="entry-title">{{post.post_title}}</h1>
 
-	    	<span class="comments"> <a title="{{post.post_title}}" href="#comments">{{post.comment_count}}条评论</a>
-	    	</span>
-	    	<span class="comments"> {{ post.view_num }}人阅读</span>
-	    	<div class="fixed"></div>
+								<div class="entry-meta">
+					<span class="byline">
+					<span class="sep"> by </span>
+					<span class="author vcard">
+						<a class="url fn n" rel="author" title="View all posts by dan" href="/">dan</a>
+					</span>
+					</span>
+
+					<span class="sep"  style="float:right"> <a title="{{post.post_title}}" href="/article/{{post.id}}#comments">{{post.comment_count}}条评论</a></span>
+					<span class="sep" style="float:right"> {{ post.view_num }}人阅读</span>
 
 
+				</div>
+			</header>
+			<div class="entry-content post_content">
 
-	    </div>
+    				{{ (post.post_content|safe) }} 
+				
+			</div>
 
-	    <div class="content">
-	    	{{ (post.post_content|safe)}} 
-
-	    </div>
-
-	    <hr width="100%" height="1">
-	    <div style="margin-top: 15px; font-size: 11px;color: #cc0000;">
-		<p align="center">
-		<strong>
-		（转载本站文章请注明作者和出处
-		<a href="/">派森吧-pythonpub.com</a>
-		，请勿用于任何商业用途）
-		</strong>
-		</p>
-		</div>
-
-	    <div class="under">
-
-	    	<span class="categories">分类: </span>
-	    	<span>
-				<a rel="category tag" title="查看 {{post.categorys.category_name}} 中的全部文章" href="/category/{{post.categorys.id}}">{{post.categorys.category_name}}</a>
-			</span>
-
-			<span class="tags">标签: </span>
-
-			{% for tag in post.tags %}
-			<span><a rel="tag" href="/tag/{{tag.id}}">{{tag.name}}</a></span>
+			<script type="text/javascript"><!--
+				google_ad_client = "ca-pub-3421553373953599";
+				/* 派生文章下方 */
+				google_ad_slot = "4648218430";
+				google_ad_width = 468;
+				google_ad_height = 60;
+				//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+			<footer class="entry-meta">
+				<span class="cat-links">
+Posted in
+<a rel="tag" title="查看 {{post.categorys.category_name}} 中的全部文章" href="/category/{{post.categorys.id}}">{{post.categorys.category_name}}</a>
+</span>
+<span class="sep"> | </span>
+<span class="tag-links" style="float:right">
+Tagged:
+<span class="sep" style="float:right"> | </span>
+{% for tag in post.tags %}
+			<span><a rel="tag" href="/tag/{{tag.id}}" style="float:right">{{tag.name}}</a></span>
 		
 			{% endfor %}
 
-		
-	</div>
-
-</div>
+</span>
 
 
-	<div id="related_posts">
-	<h3 class="related_post_title">猜猜你喜欢的文章</h3>
-	<ul class="related_post wp_rp wp_rp_plain" style="visibility: visible">
+			</footer>
+		</article>
+
+
+<div id="comments">
+<div id="respond">
+
+	<h3 id="reply-title">
+		猜猜你喜欢的文章
+	</h3>
+<form id="commentform">
 	{% for a in articles %}	
 		<li position="0">
-		{{a.post_create_time}} --
-		<a class="wp_rp_title" href="/article/{{a.id}}">{{a.post_title}}</a>
+		
+		<a class="wp_rp_title" href="/article/{{a.id}}">{{a.post_create_time}}--{{a.post_title}}</a>
 		</li>
 	{% endfor %}
-	</ul>
-
-    </div>
-    <div class="fixed"></div>
-
-    <script src="/static/js/comment.js"></script> 
-
-    <!-- comment start-->
-    <div id="comments">
-
-
-    <div id="commentlist">
-	<ol id="thecomments" style="display: block;">
-		{% for c in postcoments %}
-
-		<li id="comment-{{c.id}}" class="comment regularcomment">
-		<div class="author">
-		<div class="pic">
-
-		<img class="avatar avatar-32 photo" width="32" height="32" src="/static/images/{{c.id%10}}.png" alt="">
-		</div>
-		<div class="name">
-			<span id="commentauthor-{{c.id}}"> {{c.author}}</span>
-		</div>
-
-		</div>
-
-
-		<div class="info">
-			<div class="date">
-			{{c.comment_create_time}} |
-			<a href="#comments">#{{loop.index}}</a>
-			</div>
-			<div class="act">
-<a onclick="MGJS_CMT.reply('commentauthor-{{c.id}}', 'comment-{{c.id}}', 'comment');" href="javascript:void(0);">回复</a>
-|</div>
-<div class="fixed"></div>
-<div class="content">
-	<div id="commentbody-{{c.id}}">
-	<p>{{c.content}}</p>
-	</div>
-
+</form>	
+</div>
 </div>
 
+<script src="/static/js/comment.js"></script> 
 
+<div id="comments">
+<h2 id="comments-title">
+One thought on “
+<span>{{post.post_title}}</span>
+”
+</h2>
 
-		</div>
+<ol class="commentlist">
+		{% for c in postcoments %}
 
+		<li id="li-comment-{{c.id}}" class="comment even thread-even depth-1">
+		<article id="comment-{{c.id}}" class="comment">
+		<footer class="clearfix comment-head">
+			<div class="comment-author vcard">
+			<img class="avatar avatar-50 photo" width="50" height="50" src="/static/images/{{c.id%10}}.png" alt="">
+			<cite class="fn">{{c.author}}</cite>
+			</div>
+			<div class="comment-meta commentmetadata">
+			<a href="#comments">
+			<time datetime="2013-01-01T02:07:46+00:00" pubdate=""> {{c.comment_create_time}} </time>
+			</a>
+	
+			</div>
+			</footer>
 
-		<div class="fixed"></div>
+			<div class="comment-content">
+			<p>{{c.content}}</p>
+			</div>
+			<div class="act">
+<a onclick="MGJS_CMT.reply('authorid-{{c.id}}', 'comment');" href="javascript:void(0);">回复</a>
+|</div>
+
+	</article>
 		</li>
 
 	    {% endfor %}
-	</ol>
-	<div class="fixed"></div>
-	</div>
 
-    </div>
-    <!-- comment end-->
-<form id="commentform" method="post" action="/addcomment">
-	<div id="respond">
-		<div id="author_info">
-			<div class="row">
-			<input id="author" class="textfield" type="text" tabindex="1" size="24" value="" name="author">
-			<label class="small" for="author">昵称 (必填)（不大于50个字符）</label>
-			</div>
+		</ol>
 
-			<div class="row">
-			<input id="email" class="textfield" type="text" tabindex="2" size="24" value="" name="email">
-			<label class="small" for="email">电子邮箱 (我们会为您保密) (必填)（不大于100个字符）</label></div>
+<div id="respond">
+	<h3 id="reply-title">发表评论</h3>
 
-			<div class="row">
-			<input id="url" class="textfield" type="text" tabindex="3" size="24" value="" name="url">
-			<label class="small" for="url">网址（不大于1024个字符）</label>
-			</div>
+	<form id="commentform" method="post" action="/addcomment">
+		<p class="comment-notes">电子邮件地址不会被公开。 必填项已用<span class="required">*</span>标注</p>
+		<p class="comment-form-author">
+		<label for="author">
+		昵称
+		<span class="required">*</span>
+		</label>
+		<input id="author" type="text" aria-required="true" size="30" value="" name="author">
+		</p>
 
+		<p class="comment-form-email">
+		<label for="email">
+		电子邮件
+		<span class="required">*</span>
+		</label>
+		<input id="email" type="text" aria-required="true" size="30" value="" name="email">
+		</p>
 
-		</div>
+		<p class="comment-form-url">
+		<label for="url">站点</label>
+		<input id="url" type="text" size="30" value="" name="url">
+		</p>
 
+		<p class="comment-form-comment">
+		<label for="comment">评论</label>
+		<textarea id="comment" aria-required="true" rows="8" cols="45" name="comment"></textarea>
+		</p>
 
-			<div class="row">
-<textarea id="comment" cols="50" rows="8" tabindex="4" name="comment"></textarea>
-</div>
-<div id="submitbox">
-	<div class="submitbutton">
-<input id="submit" class="button" type="submit" value="提交评论" tabindex="5" name="submit">
-
+	<p class="form-submit">
+<input id="submit" type="submit" value="发表评论" name="submit">
+<input id="nonce" type="hidden" value={{range(0,10000)|random}} name="nonce">
 <input type="hidden" value="{{post.id}}" name="comment_post_ID">
-<div class="fixed"></div>
+</p>
+	</form>
 </div>
 </div>
 
 
 
+</div>		
 
-	</div>
 
-</form>
 
-<!-- /main -->
+
+<div id="sidebar" class="widget-area col300" role="complementary">
+<div id="sidebar-wrap" class="clearfix">
+	{% include '/sider.html' %}
+</div>
+</div>
+
+
+
 </div>
 
 
@@ -254,21 +265,50 @@
 
 
 
-<div id="sidebar">
-{% include '/sider.html' %}
-	</div>
-<div class="fixed"></div>
-
-	<!-- /content-out -->
-	</div>
 
 
-<!-- footer -->
-<footer>
+
+
+<footer id="colophon" role="contentinfo">
+<div id="site-generator">
 {% include '/foot.html' %}
-<!-- /footer -->
-</footer>
 </div>
+</footer>
+
+
+
 </div>
 
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

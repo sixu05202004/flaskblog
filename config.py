@@ -5,7 +5,7 @@ PER_PAGE = 10
 
 # configuration mysql
 
-SQLALCHEMY_DATABASE_URI = "mysql://%s:%s@%s/%s"%('yourname','yourpas,'127.0.0.1','yourdb')
+SQLALCHEMY_DATABASE_URI = "mysql://%s:%s@%s/%s"%('admin','admin','127.0.0.1','test')
 
 SECRET_KEY = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 USERNAME = 'admin'

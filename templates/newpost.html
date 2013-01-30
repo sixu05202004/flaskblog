@@ -23,6 +23,7 @@
 <div id="content">
 <form id="article_form" action="/addpost" method="post">
     <p><span style="font-size:16px;font-weight:bold;">标题：</span><input type="text" name="title" id="title" size="80" /></p>
+    <p><span style="font-size:16px;font-weight:bold;">postname</span><input type="text" name="postname" id="postname" size="80" /></p>
     <br>
     <textarea id="editor_id" name="content" style="width:700px;height:500px;">
     </textarea>
@@ -34,6 +35,13 @@
         {{ category.category_name }}<input type="radio" name="category" value="{{ category.id }}" />&nbsp;&nbsp;
     {% endfor %}
     </p>
+    <input type="submit" />
+</form>
+
+
+<form id="article_form" action="/epost" method="get">
+    <p><span style="font-size:16px;font-weight:bold;">post number：</span><input type="text" name="post" id="post" size="80" /></p>
+
     <input type="submit" />
 </form>
 </div>
