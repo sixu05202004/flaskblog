@@ -23,6 +23,16 @@
 
 <a  target="_blank" href="http://www.pythondoc.com/pythontutorial3/index.html">Python 3.3 tutorial中文版</a>
 </li>
+
+
+<li>
+
+<a  target="_blank" href="http://www.pythondoc.com/sphinx/index.html">sphinx中文文档</a>
+</li>
+
+
+
+
 </ul>
 </aside>
 
@@ -112,7 +122,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <ul id="recentcomments">
             {% for comment in comments %}
             <li>
-                <a title="{{comment.post_id}}" href="/article/{{comment.post_id}}#comments">{{comment.author}}</a>
+                <a title="{{comment.post_id}}" href="/article/{{comment.post_id}}#comments">{{comment.author_name}}</a>
                 : {{(comment.content|safe)[:30]}} ...
             </li>
             {% endfor %}
@@ -140,7 +150,11 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <aside id="text-4" class="widget widget_text">
 <h2 class="widget-title">站长统计</h2>
 <div class="textwidget">
-<script src="http://s23.cnzz.com/stat.php?id=3539674&web_id=3539674&show=pic2" language="JavaScript"></script>   
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc25f227fbd8e75f515729da94b81a6dc' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
 </div>
 </aside>
 

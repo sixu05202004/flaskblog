@@ -122,11 +122,10 @@ Posted in
 <a rel="tag" title="查看 {{a.categorys.category_name}} 中的全部文章" href="/category/{{a.categorys.id}}">{{a.categorys.category_name}}</a>
 </span>
 <span class="sep"> | </span>
-<span class="tag-links" style="float:right">
+<span class="tag-links">
 Tagged:
-<span class="sep" style="float:right"> | </span>
 {% for tag in a.tags %}
-			<span><a rel="tag" href="/tag/{{tag.id}}" style="float:right">{{tag.name}}</a></span>
+			<span><a rel="tag" href="/tag/{{tag.id}}">{{tag.name}}</a></span>
 		
 			{% endfor %}
 

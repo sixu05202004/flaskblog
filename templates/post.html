@@ -130,11 +130,10 @@ Posted in
 <a rel="tag" title="查看 {{post.categorys.category_name}} 中的全部文章" href="/category/{{post.categorys.id}}">{{post.categorys.category_name}}</a>
 </span>
 <span class="sep"> | </span>
-<span class="tag-links" style="float:right">
+<span class="tag-links" >
 Tagged:
-<span class="sep" style="float:right"> | </span>
 {% for tag in post.tags %}
-			<span><a rel="tag" href="/tag/{{tag.id}}" style="float:right">{{tag.name}}</a></span>
+			<span><a rel="tag" href="/tag/{{tag.id}}">{{tag.name}}</a></span>
 		
 			{% endfor %}
 
@@ -179,7 +178,7 @@ One thought on “
 		<footer class="clearfix comment-head">
 			<div class="comment-author vcard">
 			<img class="avatar avatar-50 photo" width="50" height="50" src="/static/images/{{c.id%10}}.png" alt="">
-			<cite class="fn">{{c.author}}</cite>
+			<cite class="fn">{{c.author_name}}</cite>
 			</div>
 			<div class="comment-meta commentmetadata">
 			<a href="#comments">
@@ -203,42 +202,44 @@ One thought on “
 
 		</ol>
 
+
 <div id="respond">
-	<h3 id="reply-title">发表评论</h3>
-
+	<h3 id="reply-title">发表评论(*为必填项)</h3>
 	<form id="commentform" method="post" action="/addcomment">
-		<p class="comment-notes">电子邮件地址不会被公开。 必填项已用<span class="required">*</span>标注</p>
-		<p class="comment-form-author">
-		<label for="author">
-		昵称
-		<span class="required">*</span>
-		</label>
-		<input id="author" type="text" aria-required="true" size="30" value="" name="author">
-		</p>
-
-		<p class="comment-form-email">
-		<label for="email">
-		电子邮件
-		<span class="required">*</span>
-		</label>
-		<input id="email" type="text" aria-required="true" size="30" value="" name="email">
-		</p>
-
-		<p class="comment-form-url">
-		<label for="url">站点</label>
-		<input id="url" type="text" size="30" value="" name="url">
-		</p>
-
-		<p class="comment-form-comment">
-		<label for="comment">评论</label>
-		<textarea id="comment" aria-required="true" rows="8" cols="45" name="comment"></textarea>
-		</p>
-
-	<p class="form-submit">
-<input id="submit" type="submit" value="发表评论" name="submit">
-<input id="nonce" type="hidden" value={{range(0,10000)|random}} name="nonce">
-<input type="hidden" value="{{post.id}}" name="comment_post_ID">
+  
+    {{ form.hidden_tag() }}
+    <p>
+    {{form.post_id(type='hidden', value=post.id)}}
 </p>
+
+       <p class="comment-form-author">
+            {{ form.author_name.label  }} <span class="required">*</span>
+            {{ form.author_name(size=30) }}
+
+       </p>
+
+      <p class="comment-form-email"> 
+            {{ form.author_email.label }} <span class="required">*</span>
+            {{ form.author_email(size=30)}}
+  
+      </p>
+
+      <p class="comment-form-url">  
+            {{ form.author_url.label }}
+            {{ form.author_url(size=30)}}
+      </p>
+
+      <p class="comment-form-comment">  
+            {{ form.content.label }}
+            {{ form.content(rows=8, cols=30)}}
+      </p>
+      <p class="comment-form-comment">
+      	{{ form.recaptcha.label }}<br>{{ form.recaptcha }}
+	  </p>
+
+      <p class="form-submit">
+        {{ form.submit }}
+        </p>
 	</form>
 </div>
 </div>

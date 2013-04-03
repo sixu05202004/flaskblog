@@ -1,23 +1,12 @@
-flaskblog
-=========
+Intro
+This is a person blog, powered by flask.
 
-person blog powered by flask
+Steps:
 
-修改配置：modify the config.py 
+1. python setup.py install
+install all extensions:for example:flask,flask-wtf and so on
 
-创建数据库和表：create table: modify model.py
+2. python manager.py createall
+create all tables in mysql, but MUST modify config.py:SQLALCHEMY_DATABASE_URI
 
-运行：run myapp:python myapp.py
-
-Admin
-==========
-http://127.0.0.1:8080/login
-
-
-Blog以及源码解析：
-==========
-http://www.pythonpub.com
-http://www.pythonpub.com/article/1474
-http://www.pythonpub.com/article/1475
-待添加：
-http://www.pythonpub.com/article/1476
+3. python manager.py runserver and Visit 127.0.0.1:5000/login, put your posts.

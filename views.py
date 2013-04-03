@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, url_for, redirect, request, flash, session
+from flask import Flask, render_template, url_for, redirect, request, flash, session, g
 from myapp import app
 from model import article_tags, Category, Post, Tag, Comment, pageby, db
 from werkzeug import secure_filename
@@ -12,11 +12,11 @@ from traceback import print_exc
 import os
 import json
 import time
+from form import CommentForm
 
 cache = Cache(app)
 app.config.from_object('config')
 per_page = app.config['PER_PAGE']
-
 
 
 class _DeHTMLParser(HTMLParser):
@@ -83,7 +83,6 @@ def error_404():
 @app.route('/page/<int:pageid>')
 @cache.cached(timeout=300)
 def index(pageid=1):
-
     categorys = Category.query.getall()
 
     p = Post.query.getpost_perpage(pageid, per_page)
@@ -150,9 +149,7 @@ def category(cateid=1, pageid=1):
     tag = tag[:20]
     comments = Comment.query.newcomment()[:20]
 
-    cate = Category.query.getcategory_id(cateid)
-    if not cate:
-        return redirect(url_for('error_404'))
+    cate = Category.query.get_or_404(cateid)
 
     p = pageby(cate.posts, pageid, per_page, Post.post_create_time.desc())
 
@@ -191,12 +188,9 @@ def tag(tagid=1, pageid=1):
     tag = tag[:20]
     comments = Comment.query.newcomment()[:20]
 
-
-    tagall = Tag.query.gettag_id(tagid)
-    if not tagall:
-        return redirect(url_for('error_404'))
-
-    p = Post.query.search_tag(Tag.query.gettag_id(tagid).name)
+    tagall = Tag.query.get_or_404(tagid)
+    name = tagall.name
+    p = Post.query.search_tag(name)
     p = pageby(p, pageid, per_page, Post.post_create_time.desc())
 
     articles = p.items
@@ -279,10 +273,8 @@ def article(postid=5):
     shuffle(articles)
     articles = articles[:5]
 
-    post = Post.query.getpost_id(postid)
-
-    if not post:
-        return redirect(url_for('error_404'))
+    post = Post.query.get_or_404(postid)
+    form = CommentForm()
     postcoments = post.comments.all()
     post.view_num += 1
     db.session.commit()
@@ -294,7 +286,8 @@ def article(postid=5):
                            newpost=new,
                            tags=tag,
                            comments=comments,
-                           postcoments=postcoments
+                           postcoments=postcoments,
+                           form=form
                            )
 
 
@@ -316,6 +309,7 @@ def article_byname(postname):
 
     if not post:
         return redirect(url_for('error_404'))
+    form = CommentForm()
     postcoments = post.comments.all()
     post.view_num += 1
     db.session.commit()
@@ -328,37 +322,24 @@ def article_byname(postname):
                            newpost=new,
                            tags=tag,
                            comments=comments,
-                           postcoments=postcoments
+                           postcoments=postcoments,
+                           form=form
                            )
 
 
 @app.route('/addcomment', methods=['POST'])
 def addcomment():
-    error = 'POST not legal!!!!'
-    if request.method == 'POST' and 'pythonpub.com' in \
-            request.environ.get('HTTP_REFERER'):
-        if not request.form.get('author') or \
-                len(request.form.get('author')) >= 51:
-            error = u'请填写必填项目（姓名和电子邮件地址）或者确保长度在规定范围内或者格式正确'
-        elif not request.form.get('email') or \
-                '@' not in request.form.get('email') or \
-                len(request.form.get('email')) >= 101:
-            error = u'请填写必填项目（姓名和电子邮件地址）或者确保长度在规定范围内或者格式正确'
-        elif len(request.form.get('url')) >= 1025:
-            error = u'网址过长'
-        elif not request.form.get('comment') or not is_chinese(request.form.get('comment')):
-            error = u'评论为空或者评论中无中文汉字'
-        elif request.environ.get('HTTP_X_FORWARDED_FOR') and request.form.get('nonce') and len(request.form.get('nonce')) in [1,2,3,4]:
-            c = Comment(request.form['comment_post_ID'], request.form['author'], request.form['email'], request.form['url'],
-                        request.environ['HTTP_X_FORWARDED_FOR'], request.form['comment'])
-            db.session.add(c)
-            post = Post.query.getpost_id(request.form['comment_post_ID'])
-            post.comment_count += 1
-            db.session.commit()
-            #db.engine.execute('update post set comment_count = comment_count \
-            #                    + 1 where id =' + request.form['comment_post_ID'])
-            #flash('You were successfully commented!')
-            return redirect(url_for('article', postid=request.form['comment_post_ID']))
+    form = CommentForm()
+    error = 'Sorry, Post Comments Error!'
+
+    if form.validate_on_submit():
+        comment = Comment(author_ip=request.environ['HTTP_X_FORWARDED_FOR'])
+        form.populate_obj(comment)
+        db.session.add(comment)
+        post = Post.query.getpost_id(comment.post_id)
+        post.comment_count += 1
+        db.session.commit()
+        return redirect(url_for('article', postid=comment.post_id))
 
     return render_template('/error.html', content=error)
 
@@ -429,20 +410,22 @@ def upload_file():
             return json.dumps(data)
     return 'FAIL!'
 
+
 @app.route('/epost', methods=['GET'])
 def epost():
-  num = request.args.get('post','')
-  if num:
-    p=Post.query.getpost_id(num)
-    return render_template('/editpost.html', p=p)
-  return redirect(url_for('error_404'))
+    num = request.args.get('post', '')
+    if num:
+        p = Post.query.get_or_404(num)
+        return render_template('/editpost.html', p=p)
+    return redirect(url_for('error_404'))
+
 
 @app.route('/apost', methods=['POST'])
 def apost():
     if not session.get('logged_in'):
         abort(401)
     elif request.method == 'POST':
-        p=Post.query.getpost_id(request.form['num'])
+        p = Post.query.getpost_id(request.form['num'])
         p.post_title = request.form['title']
         p.post_name = request.form['postname']
         p.post_content = request.form['content']

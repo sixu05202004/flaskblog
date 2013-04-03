@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import url_for,g
+from flask import url_for
 from flask.ext.sqlalchemy import SQLAlchemy, BaseQuery
 from werkzeug import cached_property
 from datetime import datetime
@@ -23,8 +23,8 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(200), unique=True)
 
-    def __init__(self, category_name):
-        self.category_name = category_name
+    def __init__(self, *args, **kwargs):
+        super(Category, self).__init__(*args, **kwargs)
 
     def __repr__(self):
         return '<category name %r>' % self.category_name
@@ -55,8 +55,8 @@ class Tag(db.Model):
 
     #post = db.relationship('Post', secondary=article_tags)
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, *args, **kwargs):
+        super(Tag, self).__init__(*args, **kwargs)
 
     def __repr__(self):
         return '<tag name %r>' % self.name
@@ -80,7 +80,7 @@ class PostQuery(BaseQuery):
         return self.order_by(Post.comment_count.desc(), Post.view_num.desc())
 
     def newpost(self):
-        return self.order_by(Post.post_create_time.desc())
+        return self.order_by(Post.post_modified_time.desc())
 
     def search(self, keywords):
         criteria = []
@@ -124,24 +124,9 @@ class Post(db.Model):
     tags = db.relationship('Tag', secondary=article_tags,
                            backref=db.backref('posts', lazy='dynamic'))
     tags_name = db.Column(db.Text)
-    def __init__(self, tags, post_content, post_title, category_id,  post_name, 
-                 tags_name, post_create_time=None, view_num=0, comment_count=0, status=1,
-                 author_id=1, post_modified_time=None):
-        self.post_content = post_content
-        self.post_title = post_title
-        self.category_id = category_id
-        self.post_name = post_name
-        if post_create_time is None:
-            self.post_create_time = datetime.utcnow()
-        self.view_num = view_num
-        self.comment_count = comment_count
-        self.status = status
-        self.author_id = author_id
-        if post_modified_time is None:
-            self.post_modified_time = post_modified_time
-        #self.categorys = category
-        self.tags = tags
-        self.tags_name = tags_name
+
+    def __init__(self, *args, **kwargs):
+        super(Post, self).__init__(*args, **kwargs)
 
     def __repr__(self):
         return '<post %r>' % self.post_title
@@ -177,7 +162,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     posts = db.relationship('Post', backref=db.backref('comments', lazy='dynamic'))
-    author = db.Column(db.String(50))
+    author_name = db.Column(db.String(50))
     author_email = db.Column(db.String(100))
     author_url = db.Column(db.String(1024))
     author_ip = db.Column(db.String(20))
@@ -185,56 +170,12 @@ class Comment(db.Model):
     content = db.Column(db.Text)
     isvisible = db.Column(db.Integer, default=1)
 
-    def __init__(self, postid, author, author_email, author_url, author_ip,
-                 content, isvisible=1, comment_create_time=None):
-        self.post_id = postid
-        self.author = author
-        self.author_email = author_email
-        self.author_url = author_url
-        self.author_ip = author_ip
-        self.content = content
-        self.isvisible = isvisible
-        if comment_create_time is None:
-            self.comment_create_time = datetime.utcnow()
+    def __init__(self, *args, **kwargs):
+        super(Comment, self).__init__(*args, **kwargs)
 
     def __repr__(self):
         return '<comment %r>' % self.content
 
+
 def pageby(obj, pageid, per_page, orderby):
     return obj.order_by(orderby).paginate(pageid, per_page)
-
-if __name__ == '__main__':
-    
-    #print Post.query.search('7998797').order_by(Post.post_create_time.desc()).paginate(1, 10).items
-    #print len(Tag.query.getall())
-    #print p.total
-    #db.create_ll()
-    #a=Category("test")
-    #db.session.add(a)
-    #print app.config['PER_PAGE']
-    #print Tag.query.gettag_id(2).posts.all()
-    #print Post.query.getpost_id(54).comments.all()
-    #print Category.query.getcategory_id(3).posts.order_by(Post.post_create_time.desc()).paginate(1, 10).items
-
-
-    #p=Post.query.getpost_id(110)
-    #print Post.query.search_tag(Tag.query.gettag_id(1).name).all()
-    print Tag.query.gettag_id(1).name
-    """
-    a=Category("test2")
-    b1=Tag('3')
-    b2=Tag('4')
-    c=Post(a,[b1,b2],'000','0','a')
-    db.session.add(a)
-    db.session.add(b1)
-    db.session.add(b2)
-    db.session.add(c)
-    db.session.commit()
-    """
-    #c = Comment(1458,'dan','dan@izptec.com','www.baidu.com','10.0.11.111','不错')
-    #db.session.add(c)
-    #db.session.commit()
-
-    #print db.engine.execute('update post set comment_count = comment_count + 1 where id = 1458')
-    #print c.tags[0].name
-    #print db

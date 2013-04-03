@@ -1037,7 +1037,7 @@ body.page-template-full-width-page-php #respond {
 			#comment-form-elements li {}
 				#respond #comment-form-elements label {}
 				
-				#respond #author, 
+				#respond #author1, 
 				#respond #email, 
 				#respond #url, 
 				#respond #comment {
@@ -1048,14 +1048,14 @@ body.page-template-full-width-page-php #respond {
 					box-shadow: 3px 3px 5px #e7e7e7 inset;
 					outline: none;
 				}
-					#respond #author:focus, 
+					#respond #author1:focus, 
 					#respond #email:focus, 
 					#respond #url:focus, 
 					#respond #comment:focus {
 						
 					}
 					
-				#respond #author, 
+				#respond #author1, 
 				#respond #email,
 				#respond #url {
 				
