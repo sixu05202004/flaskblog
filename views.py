@@ -385,9 +385,10 @@ def addpost():
         tagtemp = []
         taglist = request.form['tags'].split(',')
         for i in taglist:
-            tagtemp.append(Tag(i))
+            tagtemp.append(Tag(name=i))
 
-        db.session.add(Post(tagtemp, request.form['content'], request.form['title'], request.form['category'], request.form['postname'], request.form['tags']))
+        db.session.add(Post(tags=tagtemp, post_content=request.form['content'], post_title=request.form['title'], category_id=request.form['category'], post_name=request.form['postname'], tags_name=request.form['tags']))
+        db.session.commit()
         db.session.commit()
 
     return redirect(url_for('newpost'))
