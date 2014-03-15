@@ -10,3 +10,6 @@ install all extensions:for example:flask,flask-wtf and so on
 create all tables in mysql, but MUST modify config.py:SQLALCHEMY_DATABASE_URI
 
 3. python manager.py runserver and Visit 127.0.0.1:5000/login, put your posts.
+
+
+in addition, the flask Blueprint version is: https://github.com/sixu05202004/flaskblog-blueprints

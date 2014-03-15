@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, url_for, redirect, request, flash, session, g
 from myapp import app
