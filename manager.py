@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -*- coding: utf-8 -*-
 """
     manager.py
@@ -20,6 +23,15 @@ manager.add_command("runserver", Server('0.0.0.0', port=5000))
 def createall():
     "Creates database tables"
     db.create_all()
+    "add Category"
+    lists=[u'PYTHON',u'编程珠玑',u'数据库',u'操作系统',u"杂项"]
+    from model import Category
+    for i in range(1, 6):
+        item = Category()
+        item.id = i
+        item.category_name = lists[i-1]
+        db.session.add(item)
+    db.session.commit()
 
 
 @manager.command

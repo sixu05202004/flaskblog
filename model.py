@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -*- coding: utf-8 -*-
 from flask import url_for
 from flask.ext.sqlalchemy import SQLAlchemy, BaseQuery
@@ -132,7 +135,7 @@ class Post(db.Model):
         return '<post %r>' % self.post_title
 
     def _url(self):
-        return url_for('post', name=self.post_name)
+        return url_for('article_byname', postname=self.post_name)
 
     @cached_property
     def url(self):
@@ -161,7 +164,8 @@ class Comment(db.Model):
     query_class = CommentQuery
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
-    posts = db.relationship('Post', backref=db.backref('comments', lazy='dynamic'))
+    posts = db.relationship(
+        'Post', backref=db.backref('comments', lazy='dynamic'))
     author_name = db.Column(db.String(50))
     author_email = db.Column(db.String(100))
     author_url = db.Column(db.String(1024))

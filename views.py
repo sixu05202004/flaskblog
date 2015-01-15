@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, url_for, redirect, request, flash, session, g
+from flask import Flask, render_template, url_for, redirect, request, flash, session, g, abort
 from myapp import app
 from model import article_tags, Category, Post, Tag, Comment, pageby, db
 from werkzeug import secure_filename
@@ -17,12 +17,13 @@ import json
 import time
 from form import CommentForm
 
-cache = Cache(app)
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 app.config.from_object('config')
 per_page = app.config['PER_PAGE']
 
 
 class _DeHTMLParser(HTMLParser):
+
     def __init__(self):
         HTMLParser.__init__(self)
         self.__text = []
@@ -277,6 +278,7 @@ def article(postid=5):
     articles = articles[:5]
 
     post = Post.query.get_or_404(postid)
+    print post.url
     form = CommentForm()
     postcoments = post.comments.all()
     post.view_num += 1
@@ -336,7 +338,8 @@ def addcomment():
     error = 'Sorry, Post Comments Error!'
 
     if form.validate_on_submit():
-        comment = Comment(author_ip=request.environ['HTTP_X_FORWARDED_FOR'])
+        author_ip = request.environ.get('HTTP_X_FORWARDED_FOR') or '127.0.0.1'
+        comment = Comment(author_ip=author_ip)
         form.populate_obj(comment)
         db.session.add(comment)
         post = Post.query.getpost_id(comment.post_id)
@@ -390,8 +393,8 @@ def addpost():
         for i in taglist:
             tagtemp.append(Tag(name=i))
 
-        db.session.add(Post(tags=tagtemp, post_content=request.form['content'], post_title=request.form['title'], category_id=request.form['category'], post_name=request.form['postname'], tags_name=request.form['tags']))
-        db.session.commit()
+        db.session.add(Post(tags=tagtemp, post_content=request.form['content'], post_title=request.form[
+                       'title'], category_id=request.form['category'], post_name=request.form['postname'], tags_name=request.form['tags']))
         db.session.commit()
 
     return redirect(url_for('newpost'))
@@ -408,8 +411,9 @@ def upload_file():
         file = request.files.get('imgFile', None)
 
         if file and allowed_file(file.filename):
-            filename = str(int(time.time())) + '_' + secure_filename(file.filename)
-            file.save('/home/pythonspace/webapps/pythonpub/htdocs/myblog' + app.config['UPLOAD_FOLDER'] + filename)
+            filename = str(int(time.time())) + '_' + \
+                secure_filename(file.filename)
+            file.save(app.config['UPLOAD_FOLDER'] + filename)
             data = {'error': 0, 'url': app.config['UPLOAD_FOLDER'] + filename}
             return json.dumps(data)
     return 'FAIL!'

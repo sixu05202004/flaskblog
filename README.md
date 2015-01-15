@@ -3,7 +3,8 @@ This is a person blog, powered by flask.
 
 Steps:
 
-1. python setup.py install
+1. pip install -r requirement.txt
+
 install all extensions:for example:flask,flask-wtf and so on
 
 2. python manager.py createall

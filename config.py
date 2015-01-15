@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -*- coding: utf-8 -*-
 
 """
@@ -23,7 +26,7 @@ SECRET_KEY = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 USERNAME = 'admin'
 PASSWORD = 'admin'
 
-UPLOAD_FOLDER = '/static/upload/'
+UPLOAD_FOLDER = './static/upload/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 RECAPTCHA_PUBLIC_KEY = '6LeJTt8SAAAAACuSjRrt3a2jgGX-xQBREEAXw9Rs'
