@@ -17,4 +17,4 @@ In addition, the flask Blueprint version is: https://github.com/sixu05202004/fla
 
 More complicated applications is https://github.com/sixu05202004/autotest
 
-Anthoer is https://github.com/sixu05202004/newsmeme
+Another is https://github.com/sixu05202004/newsmeme
