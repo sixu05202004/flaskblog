@@ -16,4 +16,5 @@ create all tables in mysql, but MUST modify config.py:SQLALCHEMY_DATABASE_URI
 In addition, the flask Blueprint version is: https://github.com/sixu05202004/flaskblog-blueprints。
 
 More complicated applications is https://github.com/sixu05202004/autotest
-anthoer is https://github.com/sixu05202004/newsmeme
+
+Anthoer is https://github.com/sixu05202004/newsmeme
