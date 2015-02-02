@@ -6,6 +6,7 @@ from flask import Flask, render_template, url_for, redirect, request, flash, ses
 from myapp import app
 from model import article_tags, Category, Post, Tag, Comment, pageby, db
 from werkzeug import secure_filename
+from werkzeug.contrib.atom import AtomFeed
 from flask.ext.cache import Cache
 from random import shuffle
 from HTMLParser import HTMLParser
@@ -15,11 +16,25 @@ from traceback import print_exc
 import os
 import json
 import time
+from datetime import datetime
 from form import CommentForm
 
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 app.config.from_object('config')
 per_page = app.config['PER_PAGE']
+
+
+class PostFeed(AtomFeed):
+
+    def add_post(self, post):
+
+        self.add(post.post_title,
+                 '',
+                 content_type="html",
+                 author=u'dan',
+                 url=post.url,
+                 updated=datetime.now(),
+                 published=post.post_create_time)
 
 
 class _DeHTMLParser(HTMLParser):
@@ -439,3 +454,16 @@ def apost():
         p.post_content = request.form['content']
         db.session.commit()
     return redirect(url_for('newpost'))
+
+
+@app.route('/rss_lastnews')
+@cache.cached(timeout=86400)
+def rss_last():
+    feed = PostFeed("pythonpub - lastnews",
+                    feed_url=request.url,
+                    url=request.url_root)
+    new = Post.query.newpost().limit(15)
+    for post in new:
+        feed.add_post(post)
+
+    return feed.get_response()

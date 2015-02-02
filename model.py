@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 # -*- coding: utf-8 -*-
-from flask import url_for
+from flask import url_for, Markup
 from flask.ext.sqlalchemy import SQLAlchemy, BaseQuery
 from werkzeug import cached_property
 from datetime import datetime
 from myapp import app
+from helper import markdown
 
 db = SQLAlchemy(app)
 
@@ -145,6 +146,10 @@ class Post(db.Model):
     def comments(self):
         allcomments = Comment.query.filter(Comment.post_id == self.id).all()
         return allcomments
+
+    @cached_property
+    def markdown(self):
+        return Markup(markdown(self.post_content or ''))
 
 
 class CommentQuery(BaseQuery):

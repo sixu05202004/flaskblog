@@ -26,7 +26,7 @@ def createall():
     "add Category"
     lists=[u'PYTHON',u'编程珠玑',u'数据库',u'操作系统',u"杂项"]
     from model import Category
-    for i in range(1, 6):
+    for i in range(1, 7):
         item = Category()
         item.id = i
         item.category_name = lists[i-1]
