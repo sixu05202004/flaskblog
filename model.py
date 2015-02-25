@@ -177,7 +177,7 @@ class Comment(db.Model):
     author_ip = db.Column(db.String(20))
     comment_create_time = db.Column(db.DateTime, default=datetime.utcnow)
     content = db.Column(db.Text)
-    isvisible = db.Column(db.Integer, default=1)
+    isvisible = db.Column(db.Integer, default=0)
 
     def __init__(self, *args, **kwargs):
         super(Comment, self).__init__(*args, **kwargs)
