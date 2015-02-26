@@ -293,7 +293,6 @@ def article(postid=5):
     articles = articles[:5]
 
     post = Post.query.get_or_404(postid)
-    print post.url
     form = CommentForm()
     postcoments = post.comments.all()
     post.view_num += 1

@@ -234,6 +234,11 @@ One thought on “
             {{ form.content(rows=8, cols=30)}}
       </p>
 
+      <p class="comment-form-recaptcha">  
+            {{ form.recaptcha.label  }}
+            {{ form.recaptcha}}
+      </p>
+
       <p class="form-submit">
         {{ form.submit }}
       </p>

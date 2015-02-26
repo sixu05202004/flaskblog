@@ -12,8 +12,7 @@
     :license: BSD, see LICENSE for more details.
 """
 
-from flask.ext.wtf import Form
-#from flask.ext.wtf.recaptcha import RecaptchaField
+from flask.ext.wtf import Form, RecaptchaField
 from wtforms import SubmitField, TextField, TextAreaField
 from wtforms.validators import InputRequired, Email,  Length
 
@@ -27,5 +26,5 @@ class CommentForm(Form):
     author_url = TextField(u"Url")
     content = TextAreaField(u"Content")
     post_id = TextField()
-    #recaptcha = RecaptchaField(u"Copy the words appearing below")
+    recaptcha = RecaptchaField(u"Copy the words appearing below")
     submit = SubmitField(u"Save")
