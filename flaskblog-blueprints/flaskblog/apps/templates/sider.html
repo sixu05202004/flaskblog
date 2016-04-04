@@ -1,0 +1,161 @@
+<aside id="recent-posts-2" class="widget widget_recent_entries">
+    <h2 class="widget-title">公益广告</h2>
+    <div class="content">
+<p align="center" style="background-color: #82D51A;padding: 5px;color: white;font-weight: bold;border: solid 1px black;text-shadow: 0px 0px 3px black;">
+访问
+<a style="color: #FFE249;" target="_blank" href="/404">派生吧404页面</a>
+支持公益！
+</p>
+</div>
+
+</aside>
+
+
+<aside id="recent-posts-3" class="widget widget_recent_entries">
+    <h2 class="widget-title">翻译文档列表</h2>
+<ul>
+<li>
+
+<a  target="_blank" href="http://www.pythondoc.com/pythontutorial27/index.html">Python 2.7 tutorial中文版</a>
+</li>
+
+<li>
+
+<a  target="_blank" href="http://www.pythondoc.com/pythontutorial3/index.html">Python 3.3 tutorial中文版</a>
+</li>
+
+
+<li>
+
+<a  target="_blank" href="http://www.pythondoc.com/sphinx/index.html">sphinx中文文档</a>
+</li>
+
+
+
+
+</ul>
+</aside>
+
+<aside id="recent-posts-4" class="widget widget_recent_entries">
+    <h2 class="widget-title">谷歌广告</h2>
+    <script type="text/javascript"><!--
+google_ad_client = "ca-pub-3421553373953599";
+/* 派生吧1-1 */
+google_ad_slot = "1694752033";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</aside>
+
+<aside id="recent-posts-3" class="widget widget_recent_entries">
+    <h2 class="widget-title">最新文章</h2>
+        <ul>
+        {% for a in newpost %}
+        <li>
+        <a title="{{a.post_title}}" href="/article/{{a.id}}">{{a.post_title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</aside>
+
+
+
+
+
+
+
+<aside id="recent-posts-4" class="widget widget_recent_entries">
+    <h2 class="widget-title">全站热门</h2>
+    <ul>
+        {% for a in hotarticles %}
+        <li>
+        <a title="{{a.post_title}}" href="/article/{{a.id}}">{{a.post_title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</aside>
+
+
+
+<aside id="tag_cloud-5" class="widget widget_tag_cloud">
+<h2 class="widget-title">标签</h2>
+<div class="tagcloud">
+    {% set row_class = cycler('font-size:12.656565656pt;', 'font-size:8pt;', 'font-size:21.0567465745647pt;', 'font-size:9.0567465745647pt;','font-size:7.0567465745647pt;','font-size:14.0567465745647pt;', 'font-size:17.0567465745647pt;', 'font-size:10.0567465745647pt;','font-size:18.0567465745647pt;', 'font-size:9.0567465745647pt;', 'font-size:16.0567465745647pt;', 'font-size:19.0567465745647pt;', 'font-size:7.0567465745647pt;', 'font-size:10.0567465745647pt;','font-size:15.0567465745647pt;', 'font-size:8.0567465745647pt;', 'font-size:20.0567465745647pt;', 'font-size:17.0567465745647pt;', 'font-size:14.0567465745647pt;', 'font-size:15.0567465745647pt;') %}
+    {% set color_class = cycler('color:#ac1dfe;','color:#bcb46e;','color:#4298e7;','color:#a7bce8','color:#e6eca8;','color:#d4349a;','color:#5b48ce;','color:#b5b1ea;',
+    'color:#fe4516;','color:#a68d32;','color:#68d6e5;','color:#5c8d29;','color:#9c7da1;','color:#243f2a;','color:#6c7d99;','color:#9cade9;',
+    'color:#1ced29;','color:#ec3de9;','color:#367d29;','color:#cccd29;') %}
+
+
+    {% for tag in tags %}
+    <a class="tag-link-17" style={{color_class.next()}}{{row_class.next()}} href="/tag/{{tag.id}}">{{tag.name}}</a>
+    {% endfor %}
+</div>
+</aside>
+
+
+
+
+<aside id="recent-posts-4" class="widget widget_recent_entries">
+    <h2 class="widget-title">分类目录</h2>
+         <ul>
+        {% for c in categorys %}
+        <li >
+        <a title="查看 {{c.category_name}} 下的所有文章" href="/category/{{c.id}}">{{c.category_name}}({{c.posts.count()}})</a>
+        </li>
+        {% endfor %}
+     </ul>  
+
+</aside>
+
+
+
+
+<aside id="recent-comments-3" class="widget widget_recent_comments">
+<h2 class="widget-title">近期评论</h2>
+<ul id="recentcomments">
+            {% for comment in comments %}
+            <li>
+                <a title="{{comment.post_id}}" href="/article/{{comment.post_id}}#comments">{{comment.author_name}}</a>
+                : {{(comment.content|safe)[:30]}} ...
+            </li>
+            {% endfor %}
+</ul>
+</aside>
+
+
+
+<aside id="recent-posts-4" class="widget widget_recent_entries">
+    <h2 class="widget-title">谷歌广告</h2>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3421553373953599";
+/* 派生吧1-2 */
+google_ad_slot = "3171485237";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>  
+
+</aside>
+
+<aside id="text-4" class="widget widget_text">
+<h2 class="widget-title">站长统计</h2>
+<div class="textwidget">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc25f227fbd8e75f515729da94b81a6dc' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</div>
+</aside>
+
+ 

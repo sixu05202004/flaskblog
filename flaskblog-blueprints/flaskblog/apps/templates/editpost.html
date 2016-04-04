@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" >
+<title>New Article</title>
+<script charset="utf-8" src="/static/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/static/kindeditor/zh_CN.js"></script>
+<script>
+    var editor;
+    KindEditor.ready(function(K){
+        editor = K.create('#editor_id');
+    });
+</script>
+<style type="text/css">
+#content {margin:0 auto; width:710px;}
+#article_form {margin-top:50px;}
+#title {height:30px;}
+</style>
+</head>
+
+
+
+<body>
+<div id="content">
+<form id="article_form" action="/apost" method="post">
+    <p><span style="font-size:16px;font-weight:bold;">post number</span><input type="text" name="num" id="num" size="80" value="{{p.id}}"/></p>
+    <p><span style="font-size:16px;font-weight:bold;">标题：</span><input type="text" name="title" id="title" size="80" value="{{p.post_title}}"/></p>
+    <p><span style="font-size:16px;font-weight:bold;">postname</span><input type="text" name="postname" id="postname" size="80" value="{{p.post_name}}"/></p>
+    <br>
+    <textarea id="editor_id" name="content" style="width:700px;height:500px;">
+        {{p.post_content}}
+    </textarea>
+
+    <input type="submit" />
+</form>
+
+</div>
+</body>
+</html>
